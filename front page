@@ -33,7 +33,6 @@
         opacity: 0.15;
         user-select: none;
         pointer-events: none;
-        white-space: nowrap;
     }
 
     /* Buttons */
@@ -74,7 +73,8 @@
 
 <div class="background-text">SJCET</div>
 
-<button class="btn" onclick="window.location.href='exitpage.html'">
+<!-- Redirects to index.html -->
+<button class="btn" onclick="window.location.href='index.html'">
     REQUEST TO EXIT
 </button>
 
@@ -83,8 +83,4 @@
 </button>
 
 <div class="phone">
-    HOD: <a href="https://wa.me/911234567890" target="_blank">+91 12345 67890</a>
-</div>
-
-</body>
-</html>
+    HOD: <a href="https://wa.me/911234567890" ta
