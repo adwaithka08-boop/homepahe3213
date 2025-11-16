@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Request Review</title>
+
+<style>
+    body {
+        background-color: black;
+        color: white;
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+
+    .box {
+        background-color: #1a1a1a;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 700px;
+        margin: auto;
+    }
+
+    h2 {
+        color: red;
+        text-align: center;
+    }
+
+    .btn {
+        padding: 15px 30px;
+        font-size: 20px;
+        margin: 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 8px;
+        font-weight: bold;
+        color: white;
+    }
+
+    .approve-btn {
+        background-color: green;
+    }
+
+    .reject-btn {
+        background-color: red;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="box">
+    <h2>Exit Request Details</h2>
+
+    <p><strong>Reason for Exit:</strong> <span id="reason"></span></p>
+    <p><strong>Exit Time:</strong> <span id="exit_time"></span></p>
+    <p><strong>Entry Time:</strong> <span id="entry_time"></span></p>
+
+    <div>
+        <button class="btn approve-btn" onclick="approve()">APPROVE</button>
+        <button class="btn reject-btn" onclick="reject()">REJECT</button>
+    </div>
+</div>
+
+<script>
+    // Read values from URL
+    const params = new URLSearchParams(window.location.search);
+
+    document.getElementById("reason").textContent = params.get("reason");
+    document.getElementById("exit_time").textContent = params.get("exit_time");
+    document.getElementById("entry_time").textContent = params.get("entry_time");
+
+    function approve() {
+        let phone = "911234567890"; // CHANGE THIS NUMBER
+        let msg =
+            "Exit Request Approved%0AReason: " + params.get("reason") +
+            "%0AExit Time: " + params.get("exit_time") +
+            "%0AEntry Time: " + params.get("entry_time");
+
+        window.location.href = "https://wa.me/" + phone + "?text=" + msg;
+    }
+
+    function reject() {
+        window.location.href = "rejectpage.html"; // CHANGE TARGET PAGE
+    }
+</script>
+
+</body>
+</html>
