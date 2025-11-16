@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Exit Form - SJCET</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: url('https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+        background-size: cover;
+        color: white;
+    }
+
+    .form-container {
+        max-width: 600px;
+        margin: 100px auto;
+        background-color: rgba(0,0,0,0.7);
+        padding: 30px;
+        border-radius: 10px;
+    }
+
+    label {
+        display: block;
+        margin-top: 15px;
+        font-size: 18px;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 8px;
+        border: none;
+        font-size: 16px;
+    }
+
+    textarea {
+        height: 120px;
+    }
+
+    .btn-container {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn {
+        width: 48%;
+        padding: 12px;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .submit-btn { background-color: green; color: white; }
+    .clear-btn { background-color: red; color: white; }
+
+</style>
+</head>
+<body>
+
+<div class="form-container">
+    <form id="exitForm">
+        <label>Exit Time:</label>
+        <input type="time" id="exitTime" required>
+
+        <label>Entry Time:</label>
+        <input type="time" id="entryTime" required>
+
+        <label>Reason for Exit:</label>
+        <textarea id="reason" required></textarea>
+
+        <div class="btn-container">
+            <button type="submit" class="btn submit-btn">Submit</button>
+            <button type="button" class="btn clear-btn" onclick="clearForm()">Clear</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    const form = document.getElementById("exitForm");
+
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        // Redirect to admin page with form data in URL
+        const exitTime = document.getElementById("exitTime").value;
+        const entryTime = document.getElementById("entryTime").value;
+        const reason = encodeURIComponent(document.getElementById("reason").value);
+
+        window.location.href = `admin.html?exitTime=${exitTime}&entryTime=${entryTime}&reason=${reason}`;
+    });
+
+    function clearForm() {
+        form.reset();
+    }
+</script>
+
+</body>
+</html>
