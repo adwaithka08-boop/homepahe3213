@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin - SJCET Exit Requests</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: url('https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+        background-size: cover;
+        color: white;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 100px auto;
+        background-color: rgba(0,0,0,0.7);
+        padding: 30px;
+        border-radius: 10px;
+    }
+
+    h2 { color: red; text-align: center; }
+
+    p { font-size: 18px; margin: 10px 0; }
+
+    .btn {
+        padding: 15px 30px;
+        font-size: 18px;
+        font-weight: bold;
+        margin: 10px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .accept-btn { background-color: green; color: white; }
+    .reject-btn { background-color: red; color: white; }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Exit Request Details</h2>
+    <p><strong>Exit Time:</strong> <span id="exitTime"></span></p>
+    <p><strong>Entry Time:</strong> <span id="entryTime"></span></p>
+    <p><strong>Reason:</strong> <span id="reason"></span></p>
+
+    <button class="btn accept-btn" onclick="approve()">Accept</button>
+    <button class="btn reject-btn" onclick="reject()">Reject</button>
+</div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const exitTime = params.get("exitTime");
+    const entryTime = params.get("entryTime");
+    const reason = decodeURIComponent(params.get("reason"));
+
+    document.getElementById("exitTime").textContent = exitTime;
+    document.getElementById("entryTime").textContent = entryTime;
+    document.getElementById("reason").textContent = reason;
+
+    function approve() {
+        let phone = "911234567890"; // WhatsApp number to send approval
+        let message = encodeURIComponent(
+            "Leave request approved for a person. Login details will be sent."
+        );
+
+        // Open WhatsApp
+        window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+
+        // Redirect to home page with approved status
+        setTimeout(() => {
+            window.location.href = "home.html?status=approved";
+        }, 1500);
+    }
+
+    function reject() {
+        // Redirect to home page with rejected status
+        window.location.href = "home.html?status=rejected";
+    }
+</script>
+
+</body>
+</html>
