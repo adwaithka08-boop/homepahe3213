@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Home - SJCET Exit Request</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: url('https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+        background-size: cover;
+        color: white;
+    }
+
+    .container {
+        text-align: center;
+        padding-top: 100px;
+    }
+
+    .btn {
+        background-color: white;
+        color: black;
+        padding: 15px 30px;
+        font-size: 22px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        margin: 20px;
+        font-weight: bold;
+    }
+
+    .status-bar {
+        margin-top: 30px;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .hod {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        font-size: 18px;
+        background-color: rgba(0,0,0,0.6);
+        padding: 10px 15px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    <button class="btn" onclick="location.href='exit_form.html'">Request to Exit</button>
+
+    <div class="status-bar" id="statusBar">Status: Pending</div>
+</div>
+
+<div class="hod">
+    HOD: <a href="https://wa.me/911234567890?text=Hello%20HOD" target="_blank">+91 1234567890</a>
+</div>
+
+<script>
+    // Show status from URL parameter
+    const params = new URLSearchParams(window.location.search);
+    const status = params.get("status");
+    const statusBar = document.getElementById("statusBar");
+
+    if(status === "approved") {
+        statusBar.textContent = "Status: Approved ✔️";
+        statusBar.style.color = "green";
+    } else if(status === "rejected") {
+        statusBar.textContent = "Status: Rejected ❌";
+        statusBar.style.color = "red";
+    }
+</script>
+
+</body>
+</html>
